@@ -1,0 +1,5 @@
+packages/
+UmbUcommerce/bin/
+UmbUcommerce/obj/
+UmbUcommerce/App_Data/Logs
+UmbUcommerce/App_Data/TEMP

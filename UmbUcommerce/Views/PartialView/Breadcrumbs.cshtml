@@ -1,0 +1,12 @@
+﻿@model IList<UmbUcommerce.Models.BreadcrumbsViewModel>
+    @{ Layout = null; }
+
+    <ul class="breadcrumb">
+        @foreach (var breadcrumb in Model) {
+        <li class="breadcrumb-item">
+            <a href="@breadcrumb.BreadcrumbUrl">
+                @breadcrumb.BreadcrumbName
+            </a>
+        </li>
+        }
+    </ul>
