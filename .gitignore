@@ -3,3 +3,6 @@ UmbUcommerce/bin/
 UmbUcommerce/obj/
 UmbUcommerce/App_Data/Logs
 UmbUcommerce/App_Data/TEMP
+UmbUcommerce/App_Data/RavenDatabases
+UmbUcommerce/Raven
+UmbUcommerce/App_Data/cache
