@@ -28,18 +28,18 @@
             foreach (var product in products)
             {
                 Variations.Add(new ProductVariation
+                {
+                    Sku = product.Sku,
+                    VariantSku = product.VariantSku,
+                    ProductName = product.ProductDescriptions.First().DisplayName,
+                    Url = CatalogLibrary.GetNiceUrlForProduct(product),
+                    Properties = product.ProductProperties.Select(prop => new ProductProperty()
                     {
-                        Sku = product.Sku,
-                        VariantSku = product.VariantSku,
-                        ProductName = product.ProductDescriptions.First().DisplayName,
-                        Url = CatalogLibrary.GetNiceUrlForProduct(product),
-                        Properties = product.ProductProperties.Select(prop => new ProductProperty()
-                            {
-                                Id = prop.Id,
-                                Name = prop.ProductDefinitionField.Name,
-                                Value = prop.Value
-                            })
-                    });
+                        Id = prop.Id,
+                        Name = prop.ProductDefinitionField.Name,
+                        Value = prop.Value
+                    })
+                });
             }
         }
 
@@ -47,20 +47,20 @@
 
         public ICollection<ProductVariation> Variations { get; set; }
     }
-    public class SearchService : ServiceBase<Search>
+    public class SearchService : Service
     {
-        protected override object Run(Search request)
+        public SearchResponse Post(Search request)
         {
             var products = UCommerce.EntitiesV2.Product.Find(p =>
-                                                                p.VariantSku == null
-                                                                && p.DisplayOnSite
-                                                                &&
-                                                                (
-                                                                    p.Sku.Contains(request.Keyword)
-                                                                    || p.Name.Contains(request.Keyword)
-                                                                    || p.ProductDescriptions.Any(d => d.DisplayName.Contains(request.Keyword) || d.ShortDescription.Contains(request.Keyword) || d.LongDescription.Contains(request.Keyword))
-                                                                )
-                                                            );
+                                                            p.VariantSku == null
+                                                            && p.DisplayOnSite
+                                                            &&
+                                                            (
+                                                                p.Sku.Contains(request.Keyword)
+                                                                || p.Name.Contains(request.Keyword)
+                                                                || p.ProductDescriptions.Any(d => d.DisplayName.Contains(request.Keyword) || d.ShortDescription.Contains(request.Keyword) || d.LongDescription.Contains(request.Keyword))
+                                                            )
+                                                        );
             return new SearchResponse(products);
         }
 

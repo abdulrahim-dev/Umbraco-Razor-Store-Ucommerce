@@ -44,21 +44,21 @@ namespace UmbUcommerce.Services.Commands
             var orderTotal = new Money(po.OrderTotal.Value, currency);
 
             Basket = new Basket
-                {
-                    SubTotal = po.SubTotal,
-                    TaxTotal = po.TaxTotal,
-                    DiscountTotal = po.DiscountTotal,
-                    OrderTotal = po.OrderTotal,
-                    TotalItems = po.OrderLines.Sum(l => l.Quantity),
+            {
+                SubTotal = po.SubTotal,
+                TaxTotal = po.TaxTotal,
+                DiscountTotal = po.DiscountTotal,
+                OrderTotal = po.OrderTotal,
+                TotalItems = po.OrderLines.Sum(l => l.Quantity),
 
-                    FormattedSubTotal = subTotal.ToString(),
-                    FormattedTaxTotal = taxTotal.ToString(),
-                    FormattedDiscountTotal = discountTotal.ToString(),
-                    FormattedOrderTotal = orderTotal.ToString(),
-                    FormattedTotalItems = po.OrderLines.Sum(l => l.Quantity).ToString("#,##"),
+                FormattedSubTotal = subTotal.ToString(),
+                FormattedTaxTotal = taxTotal.ToString(),
+                FormattedDiscountTotal = discountTotal.ToString(),
+                FormattedOrderTotal = orderTotal.ToString(),
+                FormattedTotalItems = po.OrderLines.Sum(l => l.Quantity).ToString("#,##"),
 
-                    LineItems = new List<LineItem>()
-                };
+                LineItems = new List<LineItem>()
+            };
 
             foreach (var line in po.OrderLines)
             {
@@ -68,21 +68,21 @@ namespace UmbUcommerce.Services.Commands
                 var lineTotal = new Money(line.Total.Value, currency);
 
                 var lineItem = new LineItem
-                    {
-                        OrderLineId = line.OrderLineId,
-                        Quantity = line.Quantity,
-                        Sku = line.Sku,
-                        VariantSku = line.VariantSku,
-                        Url = url,
-                        ImageUrl = imageUrl,
-                        Price = line.Price,
-                        ProductName = line.ProductName,
-                        Total = line.Total,
-                        FormattedTotal = lineTotal.ToString(),
-                        UnitDiscount = line.UnitDiscount,
-                        VAT = line.VAT,
-                        VATRate = line.VATRate
-                    };
+                {
+                    OrderLineId = line.OrderLineId,
+                    Quantity = line.Quantity,
+                    Sku = line.Sku,
+                    VariantSku = line.VariantSku,
+                    Url = url,
+                    ImageUrl = imageUrl,
+                    Price = line.Price,
+                    ProductName = line.ProductName,
+                    Total = line.Total,
+                    FormattedTotal = lineTotal.ToString(),
+                    UnitDiscount = line.UnitDiscount,
+                    VAT = line.VAT,
+                    VATRate = line.VATRate
+                };
                 Basket.LineItems.Add(lineItem);
             }
         }
@@ -90,7 +90,7 @@ namespace UmbUcommerce.Services.Commands
         private string getImageUrlForProduct(Product product)
         {
             var thumbnail = getImageUrlFromMediaItem(product.ThumbnailImageMediaId);
-            
+
             // If we have a thumbnail image then return that otherwise return the product's main image
             return String.IsNullOrWhiteSpace(thumbnail)
                 ? getImageUrlFromMediaItem(product.PrimaryImageMediaId)
@@ -103,16 +103,16 @@ namespace UmbUcommerce.Services.Commands
                 return String.Empty;
 
             var umbracoHelper = new UmbracoHelper(UmbracoContext.Current);
-            var image = umbracoHelper.Media(mediaId);     
+            var image = umbracoHelper.Media(mediaId);
             return image.url;
         }
 
         public ResponseStatus ResponseStatus { get; set; }
         public Basket Basket { get; set; }
     }
-    public class GetBasketService : ServiceBase<GetBasket>
+    public class GetBasketService : Service
     {
-        protected override object Run(GetBasket request)
+        public GetBasketResponse Post(GetBasket request)
         {
             var basket = TransactionLibrary.GetBasket(true);
             return new GetBasketResponse(basket);

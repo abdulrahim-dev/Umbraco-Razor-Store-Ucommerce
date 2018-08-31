@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
+using ServiceStack.ServiceHost;
 using ServiceStack.ServiceInterface;
 using ServiceStack.ServiceInterface.ServiceModel;
 using UCommerce;
@@ -31,11 +32,11 @@ namespace UmbUcommerce.Services.Commands
         public PriceCalculationViewModel PriceCalculation { get; set; }
         public string NiceUrl { get; set; }
         public string Sku { get; set; }
-    }
+    }   
 
-    public class GetProductInformationService : ServiceBase<GetProductInformation>
+    public class GetProductInformationService : Service
     {
-        protected override object Run(GetProductInformation request)
+        public GetProductInformationResponse Post(GetProductInformation request)
         {
             ProductCatalog catalog = CatalogLibrary.GetCatalog(request.CatalogId);
             Product product = CatalogLibrary.GetProduct(request.Sku);

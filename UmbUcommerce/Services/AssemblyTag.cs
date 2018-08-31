@@ -4,7 +4,7 @@ using System.Linq;
 using System.Web;
 using UCommerce.Web.Api;
 
-namespace UmbUcommerce.Services
+namespace UmbUcommerce
 {
 	public class AssemblyTag : IContainsWebservices
 	{

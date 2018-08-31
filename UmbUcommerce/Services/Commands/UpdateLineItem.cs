@@ -53,9 +53,9 @@
 
         public LineItem UpdatedLine { get; set; }
     }
-    public class UpdateLineItemService : ServiceBase<UpdateLineItem>
+    public class UpdateLineItemService : Service
     {
-        protected override object Run(UpdateLineItem request)
+        public UpdateLineItemResponse Post(UpdateLineItem request)
         {
             TransactionLibrary.UpdateLineItem(request.OrderLineId, request.NewQuantity);
             TransactionLibrary.ExecuteBasketPipeline();

@@ -41,26 +41,26 @@
                 return;
 
             Variant = new ProductVariation
+            {
+                Sku = variant.Sku,
+                VariantSku = variant.VariantSku,
+                ProductName = variant.Name,
+                Properties = variant.ProductProperties.Select(prop => new ProductProperty
                 {
-                    Sku = variant.Sku,
-                    VariantSku = variant.VariantSku,
-                    ProductName = variant.Name,
-                    Properties = variant.ProductProperties.Select(prop => new ProductProperty
-                    {
-                        Id = prop.Id,
-                        Name = prop.ProductDefinitionField.Name,
-                        Value = prop.Value
-                    })
-                };
+                    Id = prop.Id,
+                    Name = prop.ProductDefinitionField.Name,
+                    Value = prop.Value
+                })
+            };
         }
 
         public ResponseStatus ResponseStatus { get; set; }
 
         public ProductVariation Variant { get; set; }
     }
-    public class GetVariantSkuFromSelectionService : ServiceBase<GetVariantSkuFromSelection>
+    public class GetVariantSkuFromSelectionService : Service
     {
-        protected override object Run(GetVariantSkuFromSelection request)
+        public GetVariantSkuFromSelectionResponse Post(GetVariantSkuFromSelection request)
         {
             var product = CatalogLibrary.GetProduct(request.ProductSku);
             return new GetVariantSkuFromSelectionResponse(product, request.VariantProperties);
