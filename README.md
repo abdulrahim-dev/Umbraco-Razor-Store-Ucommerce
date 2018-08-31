@@ -29,9 +29,11 @@ Steps
 13) Now the frontend is ready to go. Add new category and files.
 
 14) Add new items in the configuration files to allow services Umbraco\ucommerce\Configuration\Custom.config
+  ```config
    <components>
     <component id="DemoStoreWebApi" service="UCommerce.Web.Api.IContainsWebservices, UCommerce.Web.Api" type="UmbUcommerce.AssemblyTag,         UmbUcommerce" />
   </components>
+  ```
   
   AssemblyTag namespace must be project name. The file is located in Services folder.
   ```C#
