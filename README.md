@@ -34,21 +34,31 @@ Steps
   </components>
   
   AssemblyTag namespace must be project name. The file is located in Services folder.
+  ```C#
+    namespace UmbUcommerce
+    {
+        public class AssemblyTag : IContainsWebservices
+        {
+        }
+    }
+  ```
   
  15) Update all the files in the Services -> Commands folder
      for example: if the code is like
-     ```C#
-         public class AddToBasketService : ServiceBase<AddToBasket>
-    {
-        protected override object Run(AddToBasket request)
-        {
-            TransactionLibrary.AddToBasket(request.Quantity, request.Sku, request.VariantSku, addToExistingLine: true,    executeBasketPipeline: true);
-            return new AddToBasketResponse();
+```C#         
+         public class AddToBasketService : ServiceBase<AddToBasket>   
+         {
+            protected override object Run(AddToBasket request)
+            {
+                TransactionLibrary.AddToBasket(request.Quantity, request.Sku, request.VariantSku, addToExistingLine: true,    executeBasketPipeline: true);
+                return new AddToBasketResponse();
+            }
         }
-    }
-    ```
+ ```
 
 change it to 
+
+```C#
      public class AddToBasketService : Service
     {
         public AddToBasketResponse Post(AddToBasket request)
@@ -57,6 +67,7 @@ change it to
             return new AddToBasketResponse();
         }
     }
+ ```
     
  ServiceBase<AddToBasket> is obselete. https://docs.ucommerce.net/ucommerce/v7.0/extending-ucommerce/add-a-new-web-service/add-a-new-web-service.html
  
