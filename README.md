@@ -27,3 +27,35 @@ Steps
 12) Run the project.Goto umbraco admin section and publish all nodes
 
 13) Now the frontend is ready to go. Add new category and files.
+
+14) Add new items in the configuration files to allow services Umbraco\ucommerce\Configuration\Custom.config
+   <components>
+    <component id="DemoStoreWebApi" service="UCommerce.Web.Api.IContainsWebservices, UCommerce.Web.Api" type="UmbUcommerce.AssemblyTag,         UmbUcommerce" />
+  </components>
+  
+  AssemblyTag namespace must be project name. The file is located in Services folder.
+  
+ 15) Update all the files in the Services -> Commands folder
+     for example: if the code is like
+         public class AddToBasketService : ServiceBase<AddToBasket>
+    {
+        protected override object Run(AddToBasket request)
+        {
+            TransactionLibrary.AddToBasket(request.Quantity, request.Sku, request.VariantSku, addToExistingLine: true,    executeBasketPipeline: true);
+            return new AddToBasketResponse();
+        }
+    }
+
+change it to 
+     public class AddToBasketService : Service
+    {
+        public AddToBasketResponse Post(AddToBasket request)
+        {
+            TransactionLibrary.AddToBasket(request.Quantity, request.Sku, request.VariantSku, addToExistingLine: true, executeBasketPipeline: true);
+            return new AddToBasketResponse();
+        }
+    }
+    
+ ServiceBase<AddToBasket> is obselete. https://docs.ucommerce.net/ucommerce/v7.0/extending-ucommerce/add-a-new-web-service/add-a-new-web-service.html
+ 
+ 
