@@ -1,0 +1,58 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+<div class="top_header_area">
+    <div class="container h-100">
+        <div class="row h-100">
+            <div class="col-12 col-md-6 h-100">
+                <div class="top_single_area h-100 d-flex align-items-center">
+                    <div class="top_menu">
+                        <ul>
+                            @{
+                                if (Model != null && Model.Content.AncestorsOrSelf(1) != null)
+                                {
+                                    var homeNode = Model.Content.AncestorsOrSelf(1).First();
+
+                                    //Get Multi Node picker value
+                                    if (homeNode.HasValue("topHeaderMenuItems"))
+                                    {
+                                        var topMenusCollection = homeNode.GetPropertyValue<IEnumerable<IPublishedContent>>("topHeaderMenuItems");
+                                        foreach (var item in topMenusCollection)
+                                        {
+                                            <li><a href="@item.Url">@item.Name</a></li>
+                                        }
+                                    }
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 col-md-6 h-100">
+                <div class="top_single_area h-100 d-flex align-items-center justify-content-end">
+                    <!-- Login Area Start -->
+                    <div class="login_area">
+                        <p>
+                            <a href="login.html" target="_blank"><i class="fa fa-lock" aria-hidden="true"></i> Login</a> or
+                            <a href="register.html" target="_blank"><i class="fa fa-user" aria-hidden="true"></i> Create an account</a>
+                        </p>
+                    </div>
+                    <!-- Get Support -->
+                    <div class="get_help">
+                        <a href="faq.html" target="_blank"><i class="fa fa-life-ring" aria-hidden="true"></i> Get Help</a>
+                    </div>
+                    <!-- Language Area Start -->
+                    <div class="language_area">
+                        <div class="dropdown">
+                            <button class="btn dropdown-toggle" type="button" id="lang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$USD</button>
+                            <div class="dropdown-menu" aria-labelledby="lang">
+                                <a class="dropdown-item" href="#">$AUD</a>
+                                <a class="dropdown-item" href="#">€EUR</a>
+                                <a class="dropdown-item" href="#">$CSD</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -3234,10 +3234,11 @@
     <Content Include="Views\Partials\_Header.cshtml" />
     <Content Include="Views\Partials\_HomeSlider.cshtml" />
     <Content Include="Views\Partials\_Footer.cshtml" />
-    <Content Include="Views\PartialView\_HeaderMainMenu.cshtml" />
+    <Content Include="Views\PartialView\_HeaderMainMenuCategoryNav.cshtml" />
     <Content Include="Views\AboutUs.cshtml" />
     <Content Include="Views\Partials\_HeaderMenuOtherPages.cshtml" />
     <Content Include="Views\Home.cshtml" />
+    <Content Include="Views\Partials\_TopHeader.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

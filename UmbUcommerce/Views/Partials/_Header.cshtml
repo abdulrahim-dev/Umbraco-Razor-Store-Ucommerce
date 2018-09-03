@@ -1,50 +1,7 @@
 ﻿    <!-- ***** Header Area Start ***** -->
 <header class="header_area home-2">
     <!-- Top Header Area Start -->
-    <div class="top_header_area">
-        <div class="container h-100">
-            <div class="row h-100">
-                <div class="col-12 col-md-6 h-100">
-                    <div class="top_single_area h-100 d-flex align-items-center">
-                        <div class="top_menu">
-                            <ul>
-                                <li><a href="#">About Bigshop</a></li>
-                                <li><a href="#">Shipping &amp; Delivery</a></li>
-                                <li><a href="#">Return Policy</a></li>
-                                <li><a href="#">Support</a></li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-6 h-100">
-                    <div class="top_single_area h-100 d-flex align-items-center justify-content-end">
-                        <!-- Login Area Start -->
-                        <div class="login_area">
-                            <p>
-                                <a href="login.html" target="_blank"><i class="fa fa-lock" aria-hidden="true"></i> Login</a> or
-                                <a href="register.html" target="_blank"><i class="fa fa-user" aria-hidden="true"></i> Create an account</a>
-                            </p>
-                        </div>
-                        <!-- Get Support -->
-                        <div class="get_help">
-                            <a href="faq.html" target="_blank"><i class="fa fa-life-ring" aria-hidden="true"></i> Get Help</a>
-                        </div>
-                        <!-- Language Area Start -->
-                        <div class="language_area">
-                            <div class="dropdown">
-                                <button class="btn dropdown-toggle" type="button" id="lang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$USD</button>
-                                <div class="dropdown-menu" aria-labelledby="lang">
-                                    <a class="dropdown-item" href="#">$AUD</a>
-                                    <a class="dropdown-item" href="#">€EUR</a>
-                                    <a class="dropdown-item" href="#">$CSD</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
+    @Html.Partial("_TopHeader")
     <!-- Top Header Area End -->
     <!-- Bottom Header Area Start -->
     <div class="bottom-header-area" id="stickyHeader">
@@ -115,7 +72,7 @@
                 </div>
             </div>
         </div>
-        
+
         <div class="mainmenu_area">
             <div class="container">
                 <nav id="bigshop-nav" class="navigation">
@@ -144,7 +101,7 @@
             </div>
         </div>
 
-       
+
 
     </div>
     <!-- Bottom Header Area End -->

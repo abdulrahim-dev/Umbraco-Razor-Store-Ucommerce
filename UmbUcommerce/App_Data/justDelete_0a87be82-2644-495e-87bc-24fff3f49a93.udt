@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<DocumentType>
+  <Info>
+    <Name>Basket</Name>
+    <Alias>basket</Alias>
+    <Icon>icon-shopping-basket</Icon>
+    <Thumbnail>folder.png</Thumbnail>
+    <Description />
+    <AllowAtRoot>False</AllowAtRoot>
+    <IsListView>False</IsListView>
+    <Master>home</Master>
+    <Compositions>
+      <Composition>home</Composition>
+    </Compositions>
+    <AllowedTemplates />
+    <DefaultTemplate></DefaultTemplate>
+  </Info>
+  <Structure>
+    <DocumentType>basketPreview</DocumentType>
+    <DocumentType>billing</DocumentType>
+    <DocumentType>confirmation</DocumentType>
+    <DocumentType>payment</DocumentType>
+    <DocumentType>shipping</DocumentType>
+  </Structure>
+  <GenericProperties />
+  <Tabs />
+</DocumentType>
