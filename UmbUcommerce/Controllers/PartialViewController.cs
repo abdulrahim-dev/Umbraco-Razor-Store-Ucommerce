@@ -18,7 +18,7 @@ namespace UmbUcommerce.Controllers
 
             categoryNavigationModel.Categories = MapCategories(rootCategories);
 
-            return View("/views/PartialView/CategoryNavigation.cshtml", categoryNavigationModel);
+            return View("/views/PartialView/_HeaderMainMenuCategoryNav.cshtml", categoryNavigationModel);
         }
 
         private IList<CategoryViewModel> MapCategories(ICollection<Category> categoriesToMap)

@@ -19,8 +19,8 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "f413a6946db6e72e")]
-[assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "6d4be2a80251b3d4")]
+[assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 namespace Umbraco.Web.PublishedContentModels
 {
@@ -82,6 +82,24 @@ namespace Umbraco.Web.PublishedContentModels
 		public IHtmlString Content
 		{
 			get { return this.GetPropertyValue<IHtmlString>("content"); }
+		}
+
+		///<summary>
+		/// Show In Top Header Area
+		///</summary>
+		[ImplementPropertyType("showInTopHeaderArea")]
+		public bool ShowInTopHeaderArea
+		{
+			get { return this.GetPropertyValue<bool>("showInTopHeaderArea"); }
+		}
+
+		///<summary>
+		/// Show in Top Menu: Main Menu in Header
+		///</summary>
+		[ImplementPropertyType("showInTopMenu")]
+		public bool ShowInTopMenu
+		{
+			get { return this.GetPropertyValue<bool>("showInTopMenu"); }
 		}
 	}
 
@@ -343,6 +361,41 @@ namespace Umbraco.Web.PublishedContentModels
 		public bool UmbracoNaviHide
 		{
 			get { return this.GetPropertyValue<bool>("umbracoNaviHide"); }
+		}
+	}
+
+	/// <summary>About Us</summary>
+	[PublishedContentModel("aboutUs")]
+	public partial class AboutUs : Home
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "aboutUs";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public AboutUs(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<AboutUs, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Title
+		///</summary>
+		[ImplementPropertyType("title")]
+		public string Title
+		{
+			get { return this.GetPropertyValue<string>("title"); }
 		}
 	}
 

@@ -5,11 +5,11 @@ namespace UmbUcommerce.Controllers
 {
 	public class HomeController : RenderMvcController
 	{
-        [HttpGet]
-        public ActionResult Index()
-		{
-			return View("/views/frontpage.cshtml");
-		}
+  //      [HttpGet]
+  //      public ActionResult Index()
+		//{
+		//	return View("/views/frontpage.cshtml");
+		//}
 
 
 	}

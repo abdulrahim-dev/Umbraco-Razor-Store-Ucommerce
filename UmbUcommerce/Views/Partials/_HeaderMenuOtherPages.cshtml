@@ -1,0 +1,22 @@
+﻿
+@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+@using ContentModels = Umbraco.Web.PublishedContentModels;
+@{
+    if (Model != null && Model.Content.AncestorsOrSelf(1) != null)
+    {
+        var homeNode = Model.Content.AncestorsOrSelf(1).First();
+
+        foreach (var page in homeNode.Children.Where(x => x.TemplateId != 0 && x.IsVisible() && x.GetPropertyValue<bool>("showInTopMenu")))
+        {
+            <li>
+                <a href="@page.Url">@page.Name</a>
+                @*<ul class="nav-dropdown">
+                        <li><a href="index-2.html" target="_blank">Home - 1</a></li>
+                        <li><a href="index-3.html" target="_blank">Home - 2</a></li>
+                        <li><a href="index-4.html" target="_blank">Home - 3</a></li>
+                    </ul>*@
+            </li>
+        }
+    }
+}
+
