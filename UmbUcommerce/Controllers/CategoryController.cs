@@ -18,24 +18,26 @@ namespace UmbUcommerce.Controllers
         public override ActionResult Index(RenderModel model)
         {
             var currentCategory = SiteContext.Current.CatalogContext.CurrentCategory;
-
-            var categoryViewModel = new CategoryViewModel
+            if (currentCategory != null)
             {
-                Name = currentCategory.DisplayName(),
-                Description = currentCategory.Description(),
-                CatalogId = currentCategory.ProductCatalog.Id,
-                CategoryId = currentCategory.Id,
-                Products = MapProductsInCategories(currentCategory)
-            };
+                var categoryViewModel = new CategoryViewModel
+                {
+                    Name = currentCategory.DisplayName(),
+                    Description = currentCategory.Description(),
+                    CatalogId = currentCategory.ProductCatalog.Id,
+                    CategoryId = currentCategory.Id,
+                    Products = MapProductsInCategories(currentCategory)
+                };
 
 
-            if (!HasBannerImage(currentCategory))
-            {
-                var media = ObjectFactory.Instance.Resolve<IImageService>().GetImage(currentCategory.ImageMediaId).Url;
-                categoryViewModel.BannerImageUrl = media;
+                if (!HasBannerImage(currentCategory))
+                {
+                    var media = ObjectFactory.Instance.Resolve<IImageService>().GetImage(currentCategory.ImageMediaId).Url;
+                    categoryViewModel.BannerImageUrl = media;
+                }
+                return View("/Views/Catalog.cshtml", categoryViewModel);
             }
-
-            return View("/Views/Catalog.cshtml", categoryViewModel);
+            return Redirect("/");
         }
 
         private bool HasBannerImage(Category category)

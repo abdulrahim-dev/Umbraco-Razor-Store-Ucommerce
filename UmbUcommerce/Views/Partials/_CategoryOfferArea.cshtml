@@ -1,0 +1,57 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+<!-- ***** Shop Catagory Area Start ***** -->
+<section class="shop_by_catagory_area section_padding_100_0">
+    <div class="container">
+
+
+        @{
+            if (Model != null && Model.Content.AncestorsOrSelf(1) != null)
+            {
+                var homeNode = Model.Content.AncestorsOrSelf(1).First();
+
+                //Get Multi Node picker value
+                if (CurrentPage.HasValue("categoryOfferSection"))
+                {
+                    int i = 0;
+                    var categoryOfferSections = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("categoryOfferSection");
+                    foreach (var item in categoryOfferSections)
+                    {
+                        if (i == 0 || i % 3 == 0)
+                        {
+                            @:<div class="row">
+                            }
+                            var imageId = item.GetPropertyValue<int>("categoryImage");
+                            var imageUrl = Umbraco.Media(imageId).Url;
+                            var categoryImageAlt = item.GetPropertyValue<string>("categoryImageAlt");
+                            var categoryText = item.GetPropertyValue<string>("categoryText");
+                            var categorySectionLink = item.GetPropertyValue<string>("categorySectionLink");
+
+                            <div class="col-12 col-md">
+                                <div class="single_catagory">
+                                    <a href="@categorySectionLink">
+                                        <img class="img-fluid" src="@imageUrl" alt="@categoryImageAlt">
+                                        <div class="single_cata_desc">
+                                            <div class="bigshop-table">
+                                                <div class="bigshop-table-cell">
+                                                    @Html.Raw(categoryText)
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+
+                            if ((i != 0 && i % 2 == 0) || i == categoryOfferSections.ToList().Count - 1)
+                            {
+                                @:</div>
+                        }
+                        i++;
+                    }
+                }
+            }
+        }
+
+
+    </div>
+</section>
+<!-- ***** Shop Catagory Area End ***** -->

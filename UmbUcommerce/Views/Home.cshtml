@@ -4,7 +4,14 @@
 }
 
 @Html.Partial("_HomeSlider")
-<div class="hero-unit">
-    @Umbraco.Field("content")
-</div>
+
+
+
+@Html.Partial("_CategoryOfferArea")
+
+@Html.Partial("_HomeProductTabs")
+
+@*<div class="hero-unit">
+        @Umbraco.Field("content")
+    </div>*@
 @Umbraco.RenderMacro("uCommerceHomepageCatalog")

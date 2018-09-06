@@ -1,0 +1,66 @@
+﻿@inherits Umbraco.Web.Mvc.UmbracoTemplatePage
+
+<!-- ***** Best Rated/Onsale/Top Sale Area Start ***** -->
+<section class="best_rated_onsale_top_sellares home-2 section_padding_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="tabs_area">
+                    @{
+                        if (Model != null && Model.Content.AncestorsOrSelf(1) != null)
+                        {
+                            //Get Multi Node picker value
+                            if (CurrentPage.HasValue("productsTab"))
+                            {
+                                int i = 0;
+                                var productsTabs = Model.Content.GetPropertyValue<IEnumerable<IPublishedContent>>("productsTab");
+                                <!-- Tabs -->
+                                <ul class="nav nav-tabs" role="tablist" id="product-tab">
+                                    @foreach (var item in productsTabs)
+                                    {
+                                        var tabHeading = item.GetPropertyValue<string>("tabHeading");
+                                        var selectedProducts = item.GetPropertyValue<string>("chooseProducts");
+                                        if (!string.IsNullOrEmpty(tabHeading) &&!string.IsNullOrEmpty(selectedProducts))
+                                        {
+                                            <li class="nav-item">
+                                                <a href="#@(tabHeading.Replace(" ", "-"))" class="nav-link @(i == 0 ? "active" : "")" data-toggle="tab" role="tab">@tabHeading</a>
+                                            </li>
+                                        }
+
+                                        i++;
+
+                                    }
+                                </ul>
+
+                                <div class="tab-content">
+                                    @foreach (var item in productsTabs)
+                                    {
+                                        var tabHeading = item.GetPropertyValue<string>("tabHeading");
+                                        var selectedProducts = item.GetPropertyValue<string>("chooseProducts");
+                                        if (!string.IsNullOrEmpty(tabHeading) && !string.IsNullOrEmpty(selectedProducts))
+                                        {
+                                            var productIds = (selectedProducts.Split(',')).ToList();
+                                            <div role="tabpanel" class="tab-pane fade show active" id="@(tabHeading.Replace(" ","-"))">
+                                                <div class="top_sellers_area">
+                                                    <div class="row">
+
+                                                        @{Html.RenderAction("HomePageTabWithProducts", "PartialView", new { productIds = productIds }); }
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        }
+
+
+                                    }
+                                </div>
+                            }
+                        }
+                    }
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ***** Best Rated/Onsale/Top Sale Area End ***** -->
