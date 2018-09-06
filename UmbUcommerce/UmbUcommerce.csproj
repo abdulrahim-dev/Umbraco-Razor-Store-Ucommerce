@@ -2866,10 +2866,8 @@
     <Content Include="Views\BillingShippingAddress.cshtml" />
     <Content Include="Views\Catalog.cshtml" />
     <Content Include="Views\Confirmation.cshtml" />
-    <Content Include="Views\frontpage.cshtml" />
     <Content Include="Views\Layout.cshtml" />
     <Content Include="Views\PartialView\Breadcrumbs.cshtml" />
-    <Content Include="Views\PartialView\CategoryNavigation.cshtml" />
     <Content Include="Views\PartialView\Facets.cshtml" />
     <Content Include="Views\PartialView\HomepageCatalog.cshtml" />
     <Content Include="Views\PartialView\MiniBasket.cshtml" />
@@ -3239,6 +3237,9 @@
     <Content Include="Views\Partials\_HeaderMenuOtherPages.cshtml" />
     <Content Include="Views\Home.cshtml" />
     <Content Include="Views\Partials\_TopHeader.cshtml" />
+    <Content Include="Views\Partials\_CategoryOfferArea.cshtml" />
+    <Content Include="Views\Partials\_HomeProductTabs.cshtml" />
+    <Content Include="Views\PartialView\_HomePageTabProducts.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

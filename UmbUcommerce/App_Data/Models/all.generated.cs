@@ -8,7 +8,7 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "4e1175525813f61a")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "e0d428785bd4f546")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
@@ -206,12 +206,39 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 
 		///<summary>
+		/// Category Offer Section
+		///</summary>
+		[ImplementPropertyType("categoryOfferSection")]
+		public IEnumerable<IPublishedContent> CategoryOfferSection
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("categoryOfferSection"); }
+		}
+
+		///<summary>
 		/// Content
 		///</summary>
 		[ImplementPropertyType("content")]
 		public IHtmlString Content
 		{
 			get { return this.GetPropertyValue<IHtmlString>("content"); }
+		}
+
+		///<summary>
+		/// Home Page Slider
+		///</summary>
+		[ImplementPropertyType("homePageSlider")]
+		public IEnumerable<IPublishedContent> HomePageSlider
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("homePageSlider"); }
+		}
+
+		///<summary>
+		/// Products Tab
+		///</summary>
+		[ImplementPropertyType("productsTab")]
+		public IEnumerable<IPublishedContent> ProductsTab
+		{
+			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("productsTab"); }
 		}
 
 		///<summary>
@@ -429,6 +456,192 @@ namespace Umbraco.Web.PublishedContentModels
 		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Shipping, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+	}
+
+	/// <summary>HomePageSlider</summary>
+	[PublishedContentModel("homePageSlider")]
+	public partial class HomePageSlider : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "homePageSlider";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public HomePageSlider(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePageSlider, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Animation Type: fadeInUp or fadeInLeftBig  or slideInDown
+		///</summary>
+		[ImplementPropertyType("animationType")]
+		public string AnimationType
+		{
+			get { return this.GetPropertyValue<string>("animationType"); }
+		}
+
+		///<summary>
+		/// Big Heading
+		///</summary>
+		[ImplementPropertyType("bigHeading")]
+		public string BigHeading
+		{
+			get { return this.GetPropertyValue<string>("bigHeading"); }
+		}
+
+		///<summary>
+		/// Image
+		///</summary>
+		[ImplementPropertyType("image")]
+		public IPublishedContent Image
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("image"); }
+		}
+
+		///<summary>
+		/// Link
+		///</summary>
+		[ImplementPropertyType("link")]
+		public string Link
+		{
+			get { return this.GetPropertyValue<string>("link"); }
+		}
+
+		///<summary>
+		/// Link Text
+		///</summary>
+		[ImplementPropertyType("linkText")]
+		public string LinkText
+		{
+			get { return this.GetPropertyValue<string>("linkText"); }
+		}
+
+		///<summary>
+		/// Small heading
+		///</summary>
+		[ImplementPropertyType("smallHeading")]
+		public string SmallHeading
+		{
+			get { return this.GetPropertyValue<string>("smallHeading"); }
+		}
+	}
+
+	/// <summary>Home Page Category</summary>
+	[PublishedContentModel("homePageCategory")]
+	public partial class HomePageCategory : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "homePageCategory";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public HomePageCategory(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePageCategory, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Image: Choose image with 350 x 310 pixels
+		///</summary>
+		[ImplementPropertyType("categoryImage")]
+		public IPublishedContent CategoryImage
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("categoryImage"); }
+		}
+
+		///<summary>
+		/// Alt
+		///</summary>
+		[ImplementPropertyType("categoryImageAlt")]
+		public string CategoryImageAlt
+		{
+			get { return this.GetPropertyValue<string>("categoryImageAlt"); }
+		}
+
+		///<summary>
+		/// Link
+		///</summary>
+		[ImplementPropertyType("categorySectionLink")]
+		public string CategorySectionLink
+		{
+			get { return this.GetPropertyValue<string>("categorySectionLink"); }
+		}
+
+		///<summary>
+		/// Text
+		///</summary>
+		[ImplementPropertyType("categoryText")]
+		public IHtmlString CategoryText
+		{
+			get { return this.GetPropertyValue<IHtmlString>("categoryText"); }
+		}
+	}
+
+	/// <summary>Home Page Tab Products</summary>
+	[PublishedContentModel("homePageTabProducts")]
+	public partial class HomePageTabProducts : PublishedContentModel
+	{
+#pragma warning disable 0109 // new is redundant
+		public new const string ModelTypeAlias = "homePageTabProducts";
+		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
+#pragma warning restore 0109
+
+		public HomePageTabProducts(IPublishedContent content)
+			: base(content)
+		{ }
+
+#pragma warning disable 0109 // new is redundant
+		public new static PublishedContentType GetModelContentType()
+		{
+			return PublishedContentType.Get(ModelItemType, ModelTypeAlias);
+		}
+#pragma warning restore 0109
+
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<HomePageTabProducts, TValue>> selector)
+		{
+			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
+		}
+
+		///<summary>
+		/// Choose Products
+		///</summary>
+		[ImplementPropertyType("chooseProducts")]
+		public object ChooseProducts
+		{
+			get { return this.GetPropertyValue("chooseProducts"); }
+		}
+
+		///<summary>
+		/// Tab Heading: Give Heading For the Tab
+		///</summary>
+		[ImplementPropertyType("tabHeading")]
+		public string TabHeading
+		{
+			get { return this.GetPropertyValue<string>("tabHeading"); }
 		}
 	}
 
