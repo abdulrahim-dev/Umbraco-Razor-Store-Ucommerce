@@ -10,6 +10,7 @@ using System.Collections.Specialized;
 using System.Linq;
 using System;
 using UmbUcommerce.Models;
+using Umbraco.Core;
 
 namespace UmbUcommerce.Controllers
 {
@@ -47,7 +48,7 @@ namespace UmbUcommerce.Controllers
                 facet.Name = parameter.Key;
                 foreach (var value in parameter.Value.Split(new[] { '|' }, StringSplitOptions.RemoveEmptyEntries))
                 {
-                    facet.FacetValues.Add(new FacetValue() { Value = value});
+                    facet.FacetValues.Add(new FacetValue() { Value = value });
                 }
                 facetsForQuerying.Add(facet);
             }
@@ -66,16 +67,47 @@ namespace UmbUcommerce.Controllers
             var facetValueOutputModel = new FacetsDisplayedViewModel();
             IList<Facet> facetsForQuerying = System.Web.HttpContext.Current.Request.QueryString.ToFacets();
 
+
             if (ShouldDisplayFacets(category))
             {
-                IList<Facet> facets = SearchLibrary.GetFacetsFor(category, facetsForQuerying);
+                IList<Facet> facets = GetFacetRecursive(category, facetsForQuerying);// SearchLibrary.GetFacetsFor(category, facetsForQuerying);
                 if (facets.Any(x => x.FacetValues.Any(y => y.Hits > 0)))
                 {
-                    facetValueOutputModel.Facets = MapFacets(facets);
+                    var distinctList = facets.DistinctBy(x => x.Name).ToList();
+                    facetValueOutputModel.Facets = MapFacets(distinctList);
                 }
             }
 
             return View("/Views/PartialView/Facets.cshtml", facetValueOutputModel);
+        }
+        private IList<Facet> GetFacetRecursive(Category category, IList<Facet> facetsQuery)
+        {
+            List<Facet> facets = new List<Facet>();
+            foreach (var subCategory in category.Categories)
+            {
+                var facetsList = GetFacetRecursive(subCategory, facetsQuery);
+                if (facetsList != null)
+                {
+                    facetsList = facetsList.Where(x => x.FacetValues.Any(y => y.Hits > 0)).ToList();
+                    if (facetsList.Any())
+                    {
+                        facets.AddRange(facetsList);
+                    }
+                }
+
+            }
+
+            var facetListMain = SearchLibrary.GetFacetsFor(category, facetsQuery);
+            if (facetListMain.Any())
+            {
+                facetListMain = facetListMain.Where(x => x.FacetValues.Any(y => y.Hits > 0)).ToList();
+                if (facetListMain.Any())
+                {
+                    facets.AddRange(facetListMain.ToList());
+                }
+            }
+
+            return facets;
         }
 
         private bool ShouldDisplayFacets(Category category)

@@ -11,7 +11,7 @@
                 @:<ul class="megamenu-tabs-nav">
 }
 
-                <li class="@(categoriescount == 0 ? "active" : "")"><a href="#">@category.Name</a></li>
+                <li class="@(categoriescount == 0 ? "active" : "")"><a href="#" data-url="@category.Url">@category.Name</a></li>
 
                 if (categoriescount == categories.Count - 1)
                 {

@@ -1,15 +1,24 @@
 ﻿@model UmbUcommerce.Models.FacetsDisplayedViewModel
 @{ Layout = ""; }
-@foreach (var facet in @Model.Facets)
-{
-    <div class="well">
-        <legend>@facet.DisplayName</legend>
-        @foreach (var value in facet.FacetValues)
+
+
+<div class="col-12 col-md-3">
+    <div class="shop_sidebar_area">
+        @foreach (var facet in @Model.Facets)
         {
-            <label>
-                <input type="checkbox" id="filter-@facet.Name-@value.FacetValueName" key="@facet.Name" class="filter" value="@value.FacetValueName">
-                @value.FacetValueName (@value.FacetValueHits)
-            </label>}
+            <div class="widget catagory mb-30">
+                <h6 class="widget-title">@facet.DisplayName</h6>
+                <div class="widget-desc">
+                    @foreach (var value in facet.FacetValues)
+                    {
+                        <div class="custom-control custom-checkbox d-flex align-items-center mb-2">
+                            <input type="checkbox" id="filter-@facet.Name-@value.FacetValueName" key="@facet.Name" value="@value.FacetValueName " class="custom-control-input filter">
+                            <label class="custom-control-label" for="filter-@facet.Name-@value.FacetValueName">@value.FacetValueName <span class="text-muted">(@value.FacetValueHits)</span></label>
+                        </div>
+                    }
+                </div>
+            </div>
+        }       
 
     </div>
-}
+</div>
