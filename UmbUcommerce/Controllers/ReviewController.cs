@@ -35,7 +35,7 @@ namespace UmbUcommerce.Controllers
             var reviews = new List<ProductReviewViewModel>();
             foreach (var review in product.ProductReviews)
             {
-                if (review.ProductReviewStatus.ProductReviewStatusId != (int) ProductReviewStatusCode.Approved)
+                if (review.ProductReviewStatus.ProductReviewStatusId == (int) ProductReviewStatusCode.Approved)
                 {
                     ProductReviewViewModel reviewModel = new ProductReviewViewModel();
                     reviewModel.Name = review.Customer.FirstName + " " + review.Customer.LastName;

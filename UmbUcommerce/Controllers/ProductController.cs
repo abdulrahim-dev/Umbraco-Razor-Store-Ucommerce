@@ -11,6 +11,7 @@ using UmbUcommerce.Models;
 using UCommerce.Runtime;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
+using UCommerce.Catalog.Status;
 
 namespace UmbUcommerce.Controllers
 {
@@ -45,6 +46,7 @@ namespace UmbUcommerce.Controllers
             productViewModel.IsOrderingAllowed = currentProduct.AllowOrdering;
             productViewModel.TaxCalculation = CatalogLibrary.CalculatePrice(currentProduct).YourTax.ToString();
             productViewModel.IsProductFamily = currentProduct.ProductDefinition.IsProductFamily();
+            productViewModel.Reviews = MapReviews(currentProduct);
 
             if (!string.IsNullOrEmpty(currentProduct.PrimaryImageMediaId))
             {
@@ -69,6 +71,27 @@ namespace UmbUcommerce.Controllers
             };
 
             return View("/Views/Product.cshtml", productPageViewModel);
+        }
+        private IList<ProductReviewViewModel> MapReviews(Product product)
+        {
+            var reviews = new List<ProductReviewViewModel>();
+            foreach (var review in product.ProductReviews)
+            {
+                if (review.ProductReviewStatus.ProductReviewStatusId == (int)ProductReviewStatusCode.Approved)
+                {
+                    ProductReviewViewModel reviewModel = new ProductReviewViewModel();
+                    reviewModel.Name = review.Customer.FirstName + " " + review.Customer.LastName;
+                    reviewModel.Email = review.Customer.EmailAddress;
+                    reviewModel.Title = review.ReviewHeadline;
+                    reviewModel.CreatedOn = review.CreatedOn;
+                    reviewModel.Comments = review.ReviewText;
+                    reviewModel.Rating = review.Rating;
+
+                    reviews.Add(reviewModel);
+                }
+            }
+
+            return reviews;
         }
 
         private IList<ProductViewModel> MapVariants(ICollection<Product> variants)

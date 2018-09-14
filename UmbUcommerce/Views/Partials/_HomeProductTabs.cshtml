@@ -20,7 +20,7 @@
                                     {
                                         var tabHeading = item.GetPropertyValue<string>("tabHeading");
                                         var selectedProducts = item.GetPropertyValue<string>("chooseProducts");
-                                        if (!string.IsNullOrEmpty(tabHeading) &&!string.IsNullOrEmpty(selectedProducts))
+                                        if (!string.IsNullOrEmpty(tabHeading) && !string.IsNullOrEmpty(selectedProducts))
                                         {
                                             <li class="nav-item">
                                                 <a href="#@(tabHeading.Replace(" ", "-"))" class="nav-link @(i == 0 ? "active" : "")" data-toggle="tab" role="tab">@tabHeading</a>
@@ -33,25 +33,28 @@
                                 </ul>
 
                                 <div class="tab-content">
-                                    @foreach (var item in productsTabs)
-                                    {
-                                        var tabHeading = item.GetPropertyValue<string>("tabHeading");
-                                        var selectedProducts = item.GetPropertyValue<string>("chooseProducts");
-                                        if (!string.IsNullOrEmpty(tabHeading) && !string.IsNullOrEmpty(selectedProducts))
+                                    @{
+                                        i = 0;
+                                        foreach (var item in productsTabs)
                                         {
-                                            var productIds = (selectedProducts.Split(',')).ToList();
-                                            <div role="tabpanel" class="tab-pane fade show active" id="@(tabHeading.Replace(" ","-"))">
-                                                <div class="top_sellers_area">
-                                                    <div class="row">
+                                            var tabHeading = item.GetPropertyValue<string>("tabHeading");
+                                            var selectedProducts = item.GetPropertyValue<string>("chooseProducts");
+                                            if (!string.IsNullOrEmpty(tabHeading) && !string.IsNullOrEmpty(selectedProducts))
+                                            {
+                                                var productIds = (selectedProducts.Split(',')).ToList();
+                                                <div role="tabpanel" class="tab-pane @(i == 0 ? "show active" : "")" id="@(tabHeading.Replace(" ", "-"))">
+                                                    <div class="top_sellers_area">
+                                                        <div class="row">
 
-                                                        @{Html.RenderAction("HomePageTabWithProducts", "PartialView", new { productIds = productIds }); }
+                                                            @{Html.RenderAction("HomePageTabWithProducts", "PartialView", new { productIds = productIds }); }
 
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
+                                            }
+
+                                            i++;
                                         }
-
-
                                     }
                                 </div>
                             }

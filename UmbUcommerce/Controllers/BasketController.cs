@@ -63,7 +63,7 @@ namespace UmbUcommerce.Controllers
 
             TransactionLibrary.ExecuteBasketPipeline();
 
-            var shop = model.Content.AncestorsOrSelf().FirstOrDefault(x => x.DocumentTypeAlias.Equals("home"));
+            var shop = model.Content.AncestorsOrSelf().FirstOrDefault(x => x.DocumentTypeAlias.Equals("homePage"));
             var basket = shop.DescendantsOrSelf().FirstOrDefault(x => x.DocumentTypeAlias.Equals("basket"));
             return Redirect(basket.Url);
         }

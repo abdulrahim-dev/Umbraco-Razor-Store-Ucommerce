@@ -154,7 +154,7 @@ function updateVariationOptions(sku, size, colour, userAction, success, failure)
             		var variationColour = getObjectsByKey(v.Properties, 'Name', 'Colour')[0];
 
             		// The user hasn't yet selected a size so offer them all colours (so they can see the list)
-            		if (selectedSize == '') {
+                    if (selectedSize == '' || selectedSize==undefined) {
             			colourOptions.removeAttr('disabled');
             			return true;
             		}

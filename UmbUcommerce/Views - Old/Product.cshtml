@@ -63,7 +63,8 @@
                     }
 
                     <input name="Sku" id="product-sku" type="hidden" value="@Model.ProductViewModel.Sku" />
-                    <input name="addtobasket" id="add-to-basket" class="btn btn-block btn-success" type="submit" value="Add to basket" /> @if (Model.AddedToBasket)
+                    <input name="addtobasket" id="add-to-basket" class="btn btn-block btn-success" type="submit" value="Add to basket" /> 
+                    @if (Model.AddedToBasket)
                     {
                         <div class="alert alert-success item-added">
                             <button type="button" class="close" data-dismiss="alert">×</button>

@@ -17,106 +17,214 @@
     </div>
 }
 
-<div id="product-details" class="row" itemscope itemtype="http://schema.org/Product">
-    <div class="col-md-5">
-        @if (!string.IsNullOrEmpty(Model.ProductViewModel.ThumbnailImageUrl))
-        {
-            <img src="@Model.ProductViewModel.ThumbnailImageUrl" />}
-    </div>
+<!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area Start >>>>>>>>>>>>>>>>>>>>>>>>> -->
+<section class="single_product_details_area section_padding_100" id="product-details" itemscope itemtype="http://schema.org/Product">
+    <div class="container">
+        <div class="row">
 
+            <div class="col-12 col-md-5">
+                <div class="single_product_thumb">
+                    <div id="product_details_slider" class="carousel slide" data-ride="carousel">
+                        <ol class="carousel-indicators">
 
-
-    <section class="col-md-7">
-        <header class="col-md-12 page-header">
-            <h2 itemprop="name"><b>@Model.ProductViewModel.Name</b></h2>
-        </header>
-
-        @if (Model.ProductViewModel.IsOrderingAllowed)
-        {
-
-            <form method="post" action="@Url.Action(" Index ", "Product ")">
-                <div class="col-md-12 well">
-                    <aside class="col-md-5" itemprop="offers" itemscope itemtype="http://schema.org/Offer">
-                        <p class="item-price" itemprop="price">@Model.ProductViewModel.PriceCalculation.YourPrice.Amount</p>
-                        <p class="item-tax">
-                            <small>Inc. @Model.ProductViewModel.TaxCalculation</small>
-                        </p>
-                    </aside>
-
-                    @if (Model.ProductViewModel.Properties.Count > 0 && Model.ProductViewModel.IsProductFamily)
-                    {
-                        <div class="col-md-7">
-
-                            @foreach (var prop in Model.ProductViewModel.Properties)
+                            @if (!string.IsNullOrEmpty(Model.ProductViewModel.ThumbnailImageUrl))
                             {
-                                var controlName = string.Format("variation-{0}", prop.PropertyName.ToLower());
-                                <label for="@controlName">@prop.PropertyName</label>
-                                <select name="@controlName" id="@controlName" class="variant margin-bottom form-control">
-                                    <option value="">-- Please Select --</option>
-                                    @foreach (var value in prop.Values)
-                                    {
-                                        <option value="@value">@value</option>
-                                    }
-                                </select>}
+                                <li class="active" data-target="#product_details_slider" data-slide-to="0" style="background-image: url(@Model.ProductViewModel.ThumbnailImageUrl);">
+                                </li>
+                            }
+                        </ol>
+                        <div class="carousel-inner">
 
+                            @if (!string.IsNullOrEmpty(Model.ProductViewModel.ThumbnailImageUrl))
+                            {
+                                <div class="carousel-item active">
+                                    <a class="gallery_img" href="@Model.ProductViewModel.ThumbnailImageUrl">
+                                        <img class="d-block w-100" src="@Model.ProductViewModel.ThumbnailImageUrl" alt="First slide">
+                                    </a>
+                                    <!-- Product Badge -->
+                                    <div class="product_badge">
+                                        <span class="badge-new">New</span>
+                                    </div>
+                                </div>
+                            }
                         </div>
-                    }
-
-                    <input name="Sku" id="product-sku" type="hidden" value="@Model.ProductViewModel.Sku" />
-                    <input name="addtobasket" id="add-to-basket" class="btn btn-block btn-success" type="submit" value="Add to basket" /> @if (Model.AddedToBasket)
-                    {
-                        <div class="alert alert-success item-added">
-                            <button type="button" class="close" data-dismiss="alert">×</button>
-                            <p>
-                                Thanks, this item has been added to your cart. <a href="/basket">Click here to view your cart</a>.
-                            </p>
-                        </div>
-                    }
-                </div>
-
-            </form>
-
-        }
-        else
-        {
-            <p>Sorry, the item you are looking for is not currently available.</p>
-        }
-
-
-        <section class="tabbable">
-            <ul class="nav nav-tabs" role="tablist">
-                <li class="nav-item">
-                    <a href="#product-description" class="nav-link active" data-toggle="tab" role="tab">Details</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#delivery-info" class="nav-link" data-toggle="tab" role="tab">Delivery</a>
-                </li>
-                <li class="nav-item">
-                    <a href="#returns-info" class="nav-link" data-toggle="tab" role="tab">Returns</a>
-                </li>
-                <li class="nav-item"><a href="#customer-reviews" class="nav-link" data-toggle="tab" role="tab">Reviews</a></li>
-            </ul>
-
-            <div class="tab-content margin-top">
-                <div itemprop="description" id="product-description" class="tab-pane active" role="tabpanel">
-                    @Html.Raw(Model.ProductViewModel.LongDescription)
-                </div>
-                <div id="delivery-info" class="tab-pane" role="tabpanel">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.Maecenas placerat elementum tristique.Ut ut pretium massa.Nullam mollis lobortis rutrum. Integer quis tellus enim. Donec viverra aliquam faucibus. Nam ac eros velit. Mauris
-                        vel adipiscing turpis. Mauris id tortor et augue tincidunt molestie in sed lectus.
-                    </p>
-                </div>
-                <div id="returns-info" class="tab-pane" role="tabpanel">
-                    <p>
-                        Lorem ipsum dolor sit amet, consectetur adipiscing elit.Maecenas placerat elementum tristique.Ut ut pretium massa.Nullam mollis lobortis rutrum. Integer quis tellus enim. Donec viverra aliquam faucibus. Nam ac eros velit. Mauris
-                        vel adipiscing turpis. Mauris id tortor et augue tincidunt molestie in sed lectus.
-                    </p>
-                </div>
-                <div id="customer-reviews" class="tab-pane" role="tabpanel">
-                    @Umbraco.RenderMacro("uCommerceProductReviews")
+                    </div>
                 </div>
             </div>
-        </section>
-    </section>
-</div>
+
+            <div class="col-12 col-md-7">
+                <div class="single_product_desc">
+                    <h4 class="title"><a href="#">@Model.ProductViewModel.Name</a></h4>
+                    <div class="single_product_ratings mb-15">
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <i class="fa fa-star" aria-hidden="true"></i>
+                        <span class="text-muted">(@Model.ProductViewModel.Reviews.Count Reviews)</span>
+                        
+                    </div>
+                    @if (Model.ProductViewModel.IsOrderingAllowed)
+                    {
+                        <form method="post" action="@Url.Action(" Index ", "Product ")">
+                            <h4 class="price" itemprop="price">@Model.ProductViewModel.PriceCalculation.YourPrice.Amount</h4>
+                            <div class="short_overview">
+                                <h6>Inc. @Model.ProductViewModel.TaxCalculation</h6>
+                            </div>
+
+
+                            @if (Model.ProductViewModel.Properties.Count > 0 && Model.ProductViewModel.IsProductFamily)
+                            {
+                                <div class="widget color mb-15">
+
+                                    <div class="widget-desc d-flex">
+                                        @foreach (var prop in Model.ProductViewModel.Properties)
+                                        {
+                                            var controlName = string.Format("variation-{0}", prop.PropertyName.ToLower());
+                                            <label for="@controlName">@prop.PropertyName</label>
+                                            <select name="@controlName" id="@controlName" class="variant margin-bottom form-control">
+                                                <option value="">-- Please Select --</option>
+                                                @foreach (var value in prop.Values)
+                                                {
+                                                    <option value="@value">@value</option>
+                                                }
+                                            </select>
+                                        }
+                                    </div>
+                                </div>
+                            }
+                            <input name="Sku" id="product-sku" type="hidden" value="@Model.ProductViewModel.Sku" />
+
+
+
+
+
+                            <div class="cart clearfix mb-15 d-flex align-items-center">
+                                <div class="quantity">
+                                    <span class="qty-minus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty ) &amp;&amp; qty &gt; 1 ) effect.value--;return false;"><i class="fa fa-minus" aria-hidden="true"></i></span>
+                                    <input type="number" class="qty-text" id="qty" step="1" min="1" max="12" name="quantity" value="1">
+                                    <span class="qty-plus" onclick="var effect = document.getElementById('qty'); var qty = effect.value; if( !isNaN( qty )) effect.value++;return false;"><i class="fa fa-plus" aria-hidden="true"></i></span>
+                                </div>
+                                <input name="addtobasket" id="add-to-basket" class="btn bigshop-btn bigshop-btn-sm ml-2" type="submit" value="Add to basket" />
+                            </div>
+                            @if (Model.AddedToBasket)
+                            {
+                                <div class="alert alert-success item-added">
+                                    <button type="button" class="close" data-dismiss="alert">×</button>
+                                    <p>
+                                        Thanks, this item has been added to your cart. <a href="/basket">Click here to view your cart</a>.
+                                    </p>
+                                </div>
+                            }
+                        </form>
+
+
+                    }
+                    else
+                    {
+                        <p>Sorry, the item you are looking for is not currently available.</p>
+                    }
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="product_details_tab clearfix">
+                    <!-- Tabs -->
+                    <ul class="nav nav-tabs" role="tablist" id="product-details-tab">
+                        <li class="nav-item">
+                            <a href="#description" class="nav-link active" data-toggle="tab" role="tab">Description</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#reviews" class="nav-link" data-toggle="tab" role="tab">Reviews <span class="text-muted">(@Model.ProductViewModel.Reviews.Count())</span></a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#addi-info" class="nav-link" data-toggle="tab" role="tab">Additional Information</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="#refund" class="nav-link" data-toggle="tab" role="tab">Return &amp; Cancellation</a>
+                        </li>
+                    </ul>
+                    <!-- Tab Content -->
+                    <div class="tab-content">
+
+                        <div role="tabpanel" class="tab-pane  show active" id="description">
+                            <div class="description_area">
+                                <h6>Description</h6>
+                                @Html.Raw(Model.ProductViewModel.LongDescription)
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane " id="reviews">
+                           @Umbraco.RenderMacro("uCommerceProductReviews")
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane " id="addi-info">
+                            <div class="additional_info_area">
+                                <h6>Additional Info</h6>
+                                <p>
+                                    What should I do if I receive a damaged parcel?
+                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit impedit similique qui, itaque delectus labore.</span>
+                                </p>
+                                <p>
+                                    I have received my order but the wrong item was delivered to me.
+                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quam voluptatum beatae harum tempore, ab?</span>
+                                </p>
+                                <p>
+                                    Product Receipt and Acceptance Confirmation Process
+                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus, temporibus soluta impedit minus rerum?</span>
+                                </p>
+                                <p>
+                                    How do I cancel my order?
+                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum eius eum, minima!</span>
+                                </p>
+                            </div>
+                        </div>
+
+                        <div role="tabpanel" class="tab-pane " id="refund">
+                            <div class="refund_area">
+                                <h6>Return &amp; Cancellation</h6>
+                                <p>
+                                    Return Policy
+                                    <br><span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Culpa quidem, eos eius laboriosam voluptates totam mollitia repellat rem voluptate obcaecati quas fuga similique impedit cupiditate vitae repudiandae. Rem, tenetur placeat!</span>
+                                </p>
+                                <p>Return Criteria</p>
+                                <ul class="mb-30 ml-30">
+                                    <li><i class="fa fa-circle" aria-hidden="true"></i> Package broken</li>
+                                    <li><i class="fa fa-circle" aria-hidden="true"></i> Physical damage in the product</li>
+                                    <li><i class="fa fa-circle" aria-hidden="true"></i> Software/hardware problem</li>
+                                    <li><i class="fa fa-circle" aria-hidden="true"></i> Accessories missing or damaged etc.</li>
+                                </ul>
+                                <p>
+                                    <i class="fa fa-question-circle-o" aria-hidden="true"></i> What should I do if I receive a damaged parcel?
+                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Reprehenderit impedit similique qui, itaque delectus labore.</span>
+                                </p>
+
+                                <p>
+                                    <i class="fa fa-question-circle-o" aria-hidden="true"></i> I have received my order but the wrong item was delivered to me.
+                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Facilis quam voluptatum beatae harum tempore, ab?</span>
+                                </p>
+
+                                <p>
+                                    <i class="fa fa-question-circle-o" aria-hidden="true"></i> Product Receipt and Acceptance Confirmation Process
+                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Dolorum ducimus, temporibus soluta impedit minus rerum?</span>
+                                </p>
+                                <p>
+                                    <i class="fa fa-question-circle-o" aria-hidden="true"></i> How do I cancel my order?
+                                    <br> <span>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum eius eum, minima!</span>
+                                </p>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- <<<<<<<<<<<<<<<<<<<< Single Product Details Area End >>>>>>>>>>>>>>>>>>>>>>>>> -->

@@ -31,65 +31,84 @@
 else
 {
     <p>No-one has reviewed this product yet.</p>
-} @DisplayReviewForm(Model) @helper DisplayReviewForm(ProductViewModel product)
-    {@*
-            <form action="@Url.Action(" Index ", "MyController ")" method="post" class="validate form-horizontal">*@ using (Html.BeginUmbracoForm("Index", "Review"))
+}
+@DisplayReviewForm(Model)
+
+@helper DisplayReviewForm(ProductViewModel product)
     {
+        @*
+            <form action="@Url.Action(" Index ", "MyController ")" method="post" class="validate form-horizontal">*@
+        <h4>Send Us Your Review</h4>
+        <div class="submit_a_review_area mt-50">
+            @using (Html.BeginUmbracoForm("Index", "Review"))
+            {
 
-        <h5>Send Us Your Review</h5>
-        <div class="control-group">
-            <label class="control-label" for="review-rating">Rating</label>
-            <div class="controls rating">
-                <label><input type="radio" name="Rating" value="1" /><i class="fa fa-star"></i></label>
-                <label><input type="radio" name="Rating" value="2" /><i class="fa fa-star"></i></label>
-                <label><input type="radio" name="Rating" value="3" /><i class="fa fa-star"></i></label>
-                <label><input type="radio" name="Rating" value="4" /><i class="fa fa-star"></i></label>
-                <label><input type="radio" name="Rating" value="5" /><i class="fa fa-star"></i></label>
-            </div>
-        </div>
 
-        <div id="review-form" class="">
-            <div class="control-group margin-top">
-                <br />
-                <tag tag-default="tag-default" class="control-tag tag-default" for="review-name">
-                    Your Name
-                    <div class="controls">
-                        <input type="text" id="review-name" name="Name" placeholder="" class="required span12 form-control" />
+                <div class="form-group">
+                    <label class="control-label" for="review-rating">Rating</label>
+                    <div class="stars">
+                        <input type="radio" name="Rating" value="1" class="star-1" id="star-1">
+                        <label class="star-1" for="star-1">1</label>
+                        <input type="radio" name="Rating" value="2" class="star-2" id="star-2">
+                        <label class="star-2" for="star-2">2</label>
+                        <input type="radio" name="Rating" value="3" class="star-3" id="star-3">
+                        <label class="star-3" for="star-3">3</label>
+                        <input type="radio" name="Rating" value="4" class="star-4" id="star-4">
+                        <label class="star-4" for="star-4">4</label>
+                        <input type="radio" name="Rating" value="5" class="star-5" id="star-5">
+                        <label class="star-5" for="star-5">5</label>
+                        <span></span>
                     </div>
-                </tag>
-            </div>
-            <div class="control-group margin-top">
-                <tag tag-default="tag-default" class="control-tag tag-default" for="review-email">
-                    Your Email
-                    <div class="controls">
-                        <input type="text" id="review-email" name="Email" placeholder="" class="required span12 form-control" />
-                    </div>
-                </tag>
-            </div>
-            <div class="control-group margin-top">
-                <tag tag-default="tag-default" class="control-tag tag-default" for="review-headline">
-                    Review Title
-                    <div class="controls">
-                        <input type="text" id="review-headline" name="Title" placeholder="" class="required span12 form-control" />
-                    </div>
-                </tag>
-            </div>
-            <div class="control-group margin-top">
-                <tag tag-default="tag-default" class="control-tag tag-default" for="review-text">
-                    Comments
-                    <div class="controls">
-                        <textarea rows="3" id="review-text" name="Comments" placeholder="Describe your experience with the product" class="required span12 form-control"></textarea>
-                    </div>
-                </tag>
-            </div>
-            <div class="control-group margin-top">
-                <div class="controls">
-                    <button type="submit" class="btn btn-primary" name="review-product">Save</button>
-                    <input type="hidden" name="reviewed-product-sku" id="@product.Sku" />
                 </div>
-            </div>
+
+                <div id="review-form" class="">
+                    <div class="form-group margin-top">
+                        <br />
+                        <tag tag-default="tag-default" class="control-tag tag-default" for="review-name">
+                            Your Name
+                            <div class="controls">
+                                <input type="text" id="review-name" name="Name" placeholder="" required class="required span12 form-control" />
+                            </div>
+                        </tag>
+                    </div>
+                    <div class="form-group margin-top">
+                        <tag tag-default="tag-default" class="control-tag tag-default" for="review-email">
+                            Your Email
+                            <div class="controls">
+                                <input type="text" id="review-email" name="Email" required placeholder="" class="required span12 form-control" />
+                            </div>
+                        </tag>
+                    </div>
+                    <div class="form-group margin-top">
+                        <tag tag-default="tag-default" class="control-tag tag-default" for="review-headline">
+                            Review Title
+                            <div class="controls">
+                                <input type="text" id="review-headline" name="Title" required placeholder="" class="required span12 form-control" />
+                            </div>
+                        </tag>
+                    </div>
+                    <div class="form-group margin-top">
+                        <tag tag-default="tag-default" class="control-tag tag-default" for="review-text">
+                            Comments
+                            <div class="controls">
+                                <textarea rows="3" id="review-text" name="Comments" required placeholder="Describe your experience with the product" class="required span12 form-control"></textarea>
+                            </div>
+                        </tag>
+                    </div>
+                    <div class="form-group margin-top">
+                        <div class="controls">
+                            <button type="submit" class="btn btn-primary" name="review-product">Save</button>
+                            <input type="hidden" name="reviewed-product-sku" id="@product.Sku" />
+                        </div>
+                    </div>
+                </div>
+
+            }
+
         </div>
-    }} @helper DisplayStars(double? rating)
+}
+
+@helper DisplayStars(double? rating)
     {if (rating.HasValue)
         {
             <span class="star-rating">
@@ -104,4 +123,4 @@ else
                         <i class="fa fa-star-o"></i>
                     }
                 }
-            </span> }}
+            </span>}}
