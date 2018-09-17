@@ -2,87 +2,186 @@
 @inherits Umbraco.Web.Mvc.UmbracoViewPage<AddressDetailsViewModel>
 @{ Layout = "Layout.cshtml"; }
 
-<form method="post" class="validate">
-    <div class="col-md-12 no-horizontal-padding">
-        <div class="col-md-6 well no-left-margin">
-            <legend>Billing address</legend>
-            <div class="col-md-6 control-group form-group">
-
-                <label>First name</label> @Html.TextBoxFor(x => x.BillingAddress.FirstName, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>E-mail</label> @Html.TextBoxFor(x => x.BillingAddress.EmailAddress, new { @class = "col-md-12 form-control margin-bottom" })
-
-                <label>Attention</label> @Html.TextBoxFor(x => x.BillingAddress.Attention, new { @class = "col-md-12 form-control margin-bottom" })
-
-                <label>Street 2</label> @Html.TextBoxFor(x => x.BillingAddress.Line2, new { @class = "col-md-12 form-control margin-bottom" })
-
-                <label>Postal code</label> @Html.TextBoxFor(x => x.BillingAddress.PostalCode, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>Phone</label> @Html.TextBoxFor(x => x.BillingAddress.PhoneNumber, new { @class = "col-md-12 form-control margin-bottom" })
-
+<!-- ***** Breadcumb Area Start ***** -->
+<div class="breadcumb_area bg-img background-overlay-white" style="height: 100px;">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                    <li class="breadcrumb-item active">Checkout</li>
+                </ol>
             </div>
-
-            <div class="col-md-6 control-group form-group">
-
-                <label>Last name</label> @Html.TextBoxFor(x => x.BillingAddress.LastName, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>Company</label> @Html.TextBoxFor(x => x.BillingAddress.CompanyName, new { @class = "col-md-12 form-control margin-bottom" })
-
-                <label>Street</label> @Html.TextBoxFor(x => x.BillingAddress.Line1, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>City</label> @Html.TextBoxFor(x => x.BillingAddress.City, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>Country</label> @Html.DropDownList("BillingAddress.CountryId", Model.AvailableCountries, new { @class = "countryDropdownCheckout margin-bottom form-control" })
-
-                <label>Mobile phone</label> @Html.TextBoxFor(x => x.BillingAddress.MobilePhoneNumber, new { @class = "col-md-12 form-control margin-bottom" })
-
-            </div>
-
-        </div>
-
-        <div id="shippingAddress" class="col-md-6 well display-none">
-            <legend>Shipping address</legend>
-
-            <div class="col-md-6 control-group form-group">
-
-                <label>First name</label> @Html.TextBoxFor(x => x.ShippingAddress.FirstName, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>E-mail</label> @Html.TextBoxFor(x => x.ShippingAddress.EmailAddress, new { @class = "col-md-12 form-control required email margin-bottom" })
-
-                <label>Attention</label> @Html.TextBoxFor(x => x.ShippingAddress.Attention, new { @class = "col-md-12 form-control margin-bottom" })
-
-                <label>Street 2</label> @Html.TextBoxFor(x => x.ShippingAddress.Line2, new { @class = "col-md-12 form-control margin-bottom" })
-
-                <label>Postal code</label> @Html.TextBoxFor(x => x.ShippingAddress.PostalCode, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>Phone</label> @Html.TextBoxFor(x => x.ShippingAddress.PhoneNumber, new { @class = "col-md-12 form-control margin-bottom" })
-
-            </div>
-
-            <div class="col-md-6 control-group form-group">
-
-                <label>Last name</label> @Html.TextBoxFor(x => x.ShippingAddress.LastName, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>Company</label> @Html.TextBoxFor(x => x.ShippingAddress.CompanyName, new { @class = "col-md-12 form-control margin-bottom" })
-
-                <label>Street</label> @Html.TextBoxFor(x => x.ShippingAddress.Line1, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>City</label> @Html.TextBoxFor(x => x.ShippingAddress.City, new { @class = "col-md-12 form-control required margin-bottom" })
-
-                <label>Country</label> @Html.DropDownList("ShippingAddress.CountryId", Model.AvailableCountries, new { @class = "countryDropdownCheckout margin-bottom form-control" })
-
-                <label>Mobile phone</label> @Html.TextBoxFor(x => x.ShippingAddress.MobilePhoneNumber, new { @class = "col-md-12 form-control margin-bottom" })
-
-            </div>
-
         </div>
     </div>
+</div>
+<!-- ***** Breadcumb Area End ***** -->
 
-    <label for="toggleShippingView" class="display-inline">Use a different address for shipping</label>
-    <input id="toggleShippingView" type="checkbox" name="IsShippingAddressDifferent" class="display-inline" />
+<div class="checkout_steps_area">
+    <a class="active" href="#"><i class="ti-check"></i> Billing</a>
+    <a class="" href="checkout-3.html"><i class="ti-check"></i> Shipping</a>
+    <a class="" href="checkout-4.html"><i class="ti-check"></i> Payment</a>
+    <a class="" href="checkout-5.html"><i class="ti-check"></i> Review</a>
+</div>
 
-    <div class="display-block">
-        <a href="/basket" class="btn btn-secondary">Back to Cart</a>
-        <input type="submit" class="btn btn-secondary btn-lg pull-right" value="Continue to shipping method" />
+<!-- <<<<<<<<<<<<<<<<<<<< Checkout Area Start >>>>>>>>>>>>>>>>>>>> -->
+<div class="checkout_area section_padding_0_70">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="checkout_details_area mt-50 clearfix">
+                    <h5>Billing Details</h5>
+                    <form action="#" method="post" class="validate">
+                        <div class="row billing-container">
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.FirstName, "First Name")
+                                @Html.TextBoxFor(x => x.BillingAddress.FirstName, new { @class = "form-control required billingAddressFirstName", @placeholder = "First Name" })
+                                <span style="display:none" class="error-message">This field is required</span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.LastName, "Last Name")
+                                @Html.TextBoxFor(x => x.BillingAddress.LastName, new { @class = "form-control required", @placeholder = "Last Name" })
+                                <span style="display:none" class="error-message">This field is required</span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.EmailAddress, "E-mail")
+                                @Html.TextBoxFor(x => x.BillingAddress.EmailAddress, new { @class = "col-md-12 form-control required", @placeholder = "E-mail",@data_email="true" })
+                                <span style="display:none" class="error-message">This field is required</span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.Attention, "Attention")
+                                @Html.TextBoxFor(x => x.BillingAddress.Attention, new { @class = "form-control ", @placeholder = "Attention" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.CompanyName, "Company")
+                                @Html.TextBoxFor(x => x.BillingAddress.CompanyName, new { @class = "form-control", @placeholder = "Company" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.MobilePhoneNumber, "Mobile phone")
+                                @Html.TextBoxFor(x => x.BillingAddress.MobilePhoneNumber, new { @class = "form-control required", @placeholder = "Mobile phone" })
+                                <span style="display:none" class="error-message">This field is required</span>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.PhoneNumber, "Phone")
+                                @Html.TextBoxFor(x => x.BillingAddress.PhoneNumber, new { @class = "form-control", @placeholder = "Phone" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.CountryId, "Country")
+                                @Html.DropDownList("BillingAddress.CountryId", Model.AvailableCountries, new { @class = "custom-select d-block w-100" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.City, "City")
+                                @Html.TextBoxFor(x => x.BillingAddress.City, new { @class = "form-control required", @placeholder = "City" })
+                                <span style="display:none" class="error-message">This field is required</span>
+                            </div>
+
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.Line1, "Street")
+                                @Html.TextBoxFor(x => x.BillingAddress.Line1, new { @class = "form-control required", @placeholder = "Street" })
+                                <span style="display:none" class="error-message">This field is required</span>
+                            </div>
+                            <div class="col-md-6">
+                                @Html.LabelFor(m => m.BillingAddress.Line2, "Street2")
+                                @Html.TextBoxFor(x => x.BillingAddress.Line2, new { @class = "form-control", @placeholder = "Street2" })
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                @Html.LabelFor(m => m.BillingAddress.PostalCode, "Postcode/Zip")
+                                @Html.TextBoxFor(x => x.BillingAddress.PostalCode, new { @class = "form-control required", @placeholder = "Postcode/Zip" })
+                                <span style="display:none" class="error-message">This field is required</span>
+                            </div>
+
+                        </div>
+
+                        <!-- Different Shipping Address -->
+                        <div class="different-address mt-30">
+                            <div class="ship-different-title mb-3">
+                                <div class="custom-control custom-checkbox">
+                                    <input type="checkbox" class="custom-control-input" id="IsShippingAddressDifferent" name="IsShippingAddressDifferent">
+                                    <label class="custom-control-label" for="IsShippingAddressDifferent">Ship to a different address?</label>
+                                </div>
+                            </div>
+                            <div class="row shipping_input_field" style="display:none;">
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.FirstName, "First Name")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.FirstName, new { @class = "form-control required", @placeholder = "First Name" })
+                                    <span style="display:none" class="error-message">This field is required</span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.LastName, "Last Name")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.LastName, new { @class = "form-control required", @placeholder = "Last Name" })
+                                    <span style="display:none" class="error-message">This field is required</span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.EmailAddress, "E-mail")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.EmailAddress, new { @class = "col-md-12 form-control required", @placeholder = "E-mail", @data_email = "true" })
+                                    <span style="display:none" class="error-message">This field is required</span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.Attention, "Attention")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.Attention, new { @class = "form-control", @placeholder = "Attention" })
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.CompanyName, "Company")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.CompanyName, new { @class = "form-control", @placeholder = "Company" })
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.MobilePhoneNumber, "Mobile phone")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.MobilePhoneNumber, new { @class = "form-control required", @placeholder = "Mobile phone" })
+                                    <span style="display:none" class="error-message">This field is required</span>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.PhoneNumber, "Phone")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.PhoneNumber, new { @class = "form-control", @placeholder = "Phone" })
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.CountryId, "Country")
+                                    @Html.DropDownList("ShippingAddress.CountryId", Model.AvailableCountries, new { @class = "custom-select d-block w-100" })
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.City, "City")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.City, new { @class = "form-control required", @placeholder = "City" })
+                                    <span style="display:none" class="error-message">This field is required</span>
+                                </div>
+
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.Line1, "Street")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.Line1, new { @class = "form-control required", @placeholder = "Street" })
+                                    <span style="display:none" class="error-message">This field is required</span>
+                                </div>
+                                <div class="col-md-6">
+                                    @Html.LabelFor(m => m.ShippingAddress.Line2, "Street2")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.Line2, new { @class = "form-control", @placeholder = "Street2" })
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    @Html.LabelFor(m => m.ShippingAddress.PostalCode, "Postcode/Zip")
+                                    @Html.TextBoxFor(x => x.ShippingAddress.PostalCode, new { @class = "form-control required", @placeholder = "Postcode/Zip" })
+                                    <span style="display:none" class="error-message">This field is required</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="checkout_pagination mt-50">
+                                <a href="/basket" class="btn bigshop-btn">Back to Cart</a>
+                                <input type="submit" class="btn bigshop-btn" value="Continue to shipping method" />
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+
+           
+        </div>
     </div>
-</form>
+</div>
+<!-- <<<<<<<<<<<<<<<<<<<< Checkout Area End >>>>>>>>>>>>>>>>>>>> -->
+
+@section Scripts{
+    <script src="~/scripts/Custom/billing-shipping-address.js"></script>
+    <style>
+        .error-message {
+            color: #c03b3b;
+            padding: 1px;
+            font-size: 13px;
+        }
+    </style>
+}

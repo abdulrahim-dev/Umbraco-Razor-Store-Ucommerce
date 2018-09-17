@@ -55,23 +55,30 @@ namespace UmbUcommerce.Controllers
         [HttpPost]
         public ActionResult Index(AddressDetailsViewModel addressDetails)
         {
-            if (addressDetails.IsShippingAddressDifferent)
+            var billingDetails = addressDetails.BillingAddress;
+            if (!string.IsNullOrEmpty(billingDetails.FirstName) || !string.IsNullOrEmpty(billingDetails.LastName) || 
+                !string.IsNullOrEmpty(billingDetails.EmailAddress) || !string.IsNullOrEmpty(billingDetails.MobilePhoneNumber) || !string.IsNullOrEmpty(billingDetails.Line1))
             {
-                EditBillingInformation(addressDetails.BillingAddress);
-                EditShippingInformation(addressDetails.ShippingAddress);
+                if (addressDetails.IsShippingAddressDifferent)
+                {
+                    EditBillingInformation(billingDetails);
+                    EditShippingInformation(addressDetails.ShippingAddress);
+                }
+
+                else
+                {
+                    EditBillingInformation(billingDetails);
+                    EditShippingInformation(billingDetails);
+                }
+
+                TransactionLibrary.ExecuteBasketPipeline();
+
+                var root = UmbracoContext.PublishedContentRequest.PublishedContent.AncestorsOrSelf("homePage").FirstOrDefault();
+                var shipping = root.Descendants("shipping").FirstOrDefault();
+                return Redirect(shipping.Url);
             }
 
-            else
-            {
-                EditBillingInformation(addressDetails.BillingAddress);
-                EditShippingInformation(addressDetails.BillingAddress);
-            }
-           
-            TransactionLibrary.ExecuteBasketPipeline();
-
-            var root = UmbracoContext.PublishedContentRequest.PublishedContent.AncestorsOrSelf("home").FirstOrDefault();
-            var shipping = root.Descendants("shipping").FirstOrDefault();
-            return Redirect(shipping.Url);
+            return base.View("/Views/BillingShippingAddress.cshtml", addressDetails);
         }
 
         private void EditShippingInformation(AddressViewModel shippingAddress)
