@@ -111,6 +111,9 @@ else
 
                         <div class="cart-footer d-flex mt-30">
                             <div class="back-to-shop w-50">
+                                <div class="col-sm-12" id="voucher-form">
+                                    @Umbraco.RenderMacro("uCommerceVoucher")                                    
+                                </div>
                             </div>
                             <div class="update-checkout w-50 text-right">
                                 <button name="update-basket" id="update-basket" class="btn bigshop-btn update-basket" type="submit"><i class="icon-refresh icon-white"></i>Update Cart</button>
@@ -126,8 +129,5 @@ else
     </div>
     <!-- ***** Cart Area End ***** -->
 
-    <div class="col-md-6" id="voucher-form">
-        @Umbraco.RenderMacro("uCommerceVoucher")
-        <p><span class="label label-info">Tip!</span> <small>Sign up to our mailing list and get 10% off your first order! <a href="#">Click here to get 10% off now</a>!</small></p>
-    </div>
+    
 }
