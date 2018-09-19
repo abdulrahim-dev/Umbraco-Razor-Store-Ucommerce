@@ -2777,6 +2777,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BasketController.cs" />
+    <Compile Include="Controllers\CurrencyController.cs" />
     <Compile Include="Controllers\PreviewItemsController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\BreadcrumbsController.cs" />
@@ -2804,6 +2805,7 @@
     <Compile Include="Models\CategoryNavigationViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
     <Compile Include="Models\ConfirmationPageViewModel.cs" />
+    <Compile Include="Models\CurrencyViewModel.cs" />
     <Compile Include="Models\FacetsDisplayedViewModel.cs" />
     <Compile Include="Models\FacetValueViewModel.cs" />
     <Compile Include="Models\FacetViewModel.cs" />
@@ -3247,6 +3249,7 @@
     <Content Include="Views\Partials\_HomeProductTabs.cshtml" />
     <Content Include="Views\PartialView\_HomePageTabProducts.cshtml" />
     <Content Include="Views\Preview.cshtml" />
+    <Content Include="Views\PartialView\_CurrencyList.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -3257,6 +3260,7 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Views - Old\uCommerceEmail\" />
+    <Folder Include="Views\Currency\" />
     <Folder Include="Views\uCommerceEmail\" />
   </ItemGroup>
   <ItemGroup>

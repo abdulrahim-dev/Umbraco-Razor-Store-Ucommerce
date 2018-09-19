@@ -1,0 +1,20 @@
+﻿@using UmbUcommerce.Models
+@model List<CurrencyViewModel>
+@{
+    Layout = null;
+    var currentPriceGroup = Model.Any() ? Model.Where(x => x.IsCurrent).FirstOrDefault() : null;
+}
+<div class="dropdown">
+    @if (currentPriceGroup != null)
+    {
+        <button class="btn dropdown-toggle" type="button" id="lang" aria-haspopup="true" aria-expanded="false">@currentPriceGroup.Name</button>
+        <div class="dropdown-menu" aria-labelledby="lang">
+            @foreach (var cur in Model.Where(x=>!x.IsCurrent))
+            {
+                <a class="dropdown-item switchcurrency" href="#" data-pricgroupid="@cur.PriceGroupId">@cur.Name</a>
+            }
+
+        </div>
+    }
+
+</div>

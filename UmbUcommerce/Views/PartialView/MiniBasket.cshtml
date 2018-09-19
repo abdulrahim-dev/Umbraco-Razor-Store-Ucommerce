@@ -3,11 +3,37 @@
 @{ Layout = ""; }
 @if (Model.IsEmpty)
 {
-    <a href="/store" id="empty-cart">Your Shopping Cart is empty</a> }
+<div class="cart">
+    <a href="#" id="header-cart-btn" target="_blank"><i class="ti-bag"></i><span class="cart_quantity">0</span></a>
+</div>
+}
 else
 {
-    <a href="/basket" id="mini-cart">
-        @*<i class="icon-shopping-cart icon-white"></i>*@
-        <i class="fa fa-shopping-cart icon-white margin-right-small"></i>
-        <span class="item-qty">@Model.NumberOfItems</span> items in cart, total: <span class="order-total">@Model.Total</span>
-    </a>}
+
+    <div class="cart">
+        <a href="#" id="header-cart-btn" target="_blank"><i class="ti-bag"></i><span class="cart_quantity">@Model.NumberOfItems</span></a>
+
+        <ul class="cart-list">
+            @if (Model.MiniOrderlineViewModelCollection.Any())
+            {
+                foreach (var cartItem in Model.MiniOrderlineViewModelCollection)
+                {
+                    <li>
+                        @*<a href="#" class="image"><img src="/Assets/img/product-img/top-1.png" class="cart-thumb" alt=""></a>*@
+                        <div style="border-bottom: 1px solid #e5dddd;">
+                            <h6><a href="@cartItem.ProductUrl">@cartItem.ProductName</a></h6>
+                            <p>@cartItem.Quantity x - <span class="price">@cartItem.Total</span></p>
+                        </div>
+                        <span class="dropdown-product-remove"><i class="icon-cross"></i></span>
+                    </li>
+                }
+            }
+            <li class="total">
+                <span>Total: @Model.Total</span>
+                <a href="/basket" class="btn btn-sm btn-cart">Cart</a>
+                <a href="/basket/address" class="btn btn-sm btn-checkout">Checkout</a>
+            </li>
+        </ul>
+    </div>
+
+}

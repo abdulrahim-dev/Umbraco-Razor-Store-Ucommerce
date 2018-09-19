@@ -19,7 +19,7 @@ using Umbraco.ModelsBuilder;
 using Umbraco.ModelsBuilder.Umbraco;
 
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "21fcd3fe2865f1c2")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "f79a2dd6034ef2c0")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.2")]
 
 namespace Umbraco.Web.PublishedContentModels
@@ -214,6 +214,24 @@ namespace Umbraco.Web.PublishedContentModels
 		public IEnumerable<IPublishedContent> HomePageSlider
 		{
 			get { return this.GetPropertyValue<IEnumerable<IPublishedContent>>("homePageSlider"); }
+		}
+
+		///<summary>
+		/// Logo Image: If you need to use Image for logo instead of text choose image from media
+		///</summary>
+		[ImplementPropertyType("logoImage")]
+		public IPublishedContent LogoImage
+		{
+			get { return this.GetPropertyValue<IPublishedContent>("logoImage"); }
+		}
+
+		///<summary>
+		/// Logo Text: If You need to use Logo text Please use this, keep logo image as blank
+		///</summary>
+		[ImplementPropertyType("logoText")]
+		public string LogoText
+		{
+			get { return this.GetPropertyValue<string>("logoText"); }
 		}
 
 		///<summary>

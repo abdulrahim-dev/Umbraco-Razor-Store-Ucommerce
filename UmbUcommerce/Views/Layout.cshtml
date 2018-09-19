@@ -59,5 +59,31 @@
     @Html.Raw(Html.RenderJsHere())
 
     @RenderSection("Scripts", false)
+    <script>
+        $("#lang").on('click', function (e) {
+            //toggle currency dropdown
+            $('div.dropdown-menu').toggleClass('show');
+        });
+
+        $(".switchcurrency").on('click', function (e) {
+            var params = { PriceGroupId: parseInt($(this).attr('data-pricgroupid'))}
+
+            var saveData = $.ajax({
+                type: 'POST',
+                url: "/umbraco/surface/currency/ChangeCurrency",
+                data: params,
+                dataType: "text",
+                success: function (resultData) {
+                    var data = JSON.parse(resultData);
+                    if (data.success) {
+                        window.location.reload();
+                    }
+                }
+            });
+            saveData.error(function () { alert("Something went wrong"); });
+        });
+
+       
+    </script>
 </body>
 </html>

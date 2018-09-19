@@ -41,15 +41,8 @@
                         <a href="faq.html" target="_blank"><i class="fa fa-life-ring" aria-hidden="true"></i> Get Help</a>
                     </div>
                     <!-- Language Area Start -->
-                    <div class="language_area">
-                        <div class="dropdown">
-                            <button class="btn dropdown-toggle" type="button" id="lang" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">$USD</button>
-                            <div class="dropdown-menu" aria-labelledby="lang">
-                                <a class="dropdown-item" href="#">$AUD</a>
-                                <a class="dropdown-item" href="#">€EUR</a>
-                                <a class="dropdown-item" href="#">$CSD</a>
-                            </div>
-                        </div>
+                    <div class="language_area">                        
+                        @{Html.RenderAction("GetCurrency", "Currency"); }
                     </div>
                 </div>
             </div>

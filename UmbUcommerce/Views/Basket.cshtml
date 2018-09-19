@@ -2,8 +2,19 @@
 @{ Layout = "Layout.cshtml"; }
 @if (Model.OrderLines.Count == 0)
 {
-    <div class="alert alert-info">
-        <p>Your cart is empty. Please <a href="/">return to our store and add some items</a>.</p>
+
+    <div class="cart_area section_padding_50 clearfix">        
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="cart-table clearfix">
+                            <div class="alert alert-info">
+                                <p>Your cart is empty. Please <a href="/">return to our store and add some items</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>        
     </div>
 }
 else
@@ -29,43 +40,43 @@ else
                                 <tbody>
 
                                     @for (var i = 0; i < Model.OrderLines.Count; i++)
-                                {
-                                    var line = Model.OrderLines[i];
-                                    <tr>
+                                    {
+                                        var line = Model.OrderLines[i];
+                                        <tr>
 
-                                        @Html.HiddenFor(model => model.OrderLines[i].Sku) @Html.HiddenFor(model => model.OrderLines[i].VariantSku) @Html.HiddenFor(model => model.OrderLines[i].OrderLineId)
+                                            @Html.HiddenFor(model => model.OrderLines[i].Sku) @Html.HiddenFor(model => model.OrderLines[i].VariantSku) @Html.HiddenFor(model => model.OrderLines[i].OrderLineId)
 
-                                        <td>
-                                            <button type="submit" value="@line.OrderLineId" name="RemoveOrderlineId" class="line-remove" style=" background: none; border: none;">
-                                                <i class="fa fa-times" aria-hidden="true"></i>
-                                            </button>
-                                        </td>
-                                        <td><a href="@line.ProductUrl">@line.ProductName</a></td>
-                                        <td class="money">
-                                            @if (@line.Discount.HasValue && @line.Discount > 0)
-                                        {
-                                            <span style="text-decoration: line-through">
-                                                @line.Price
-                                            </span> @line.PriceWithDiscount }
-                                    else
-                                    { @line.Price}
-                                        </td>
-                                        <td class="money">
-                                            @line.Tax
-                                        </td>
-                                        <td>
-                                            @Html.TextBoxFor(model => model.OrderLines[i].Quantity, new { @class = "qty form-control no-padding" })
-                                        </td>
-                                        <td>
-                                            @line.Total
-                                        </td>
+                                            <td>
+                                                <button type="submit" value="@line.OrderLineId" name="RemoveOrderlineId" class="line-remove" style=" background: none; border: none;">
+                                                    <i class="fa fa-times" aria-hidden="true"></i>
+                                                </button>
+                                            </td>
+                                            <td><a href="@line.ProductUrl">@line.ProductName</a></td>
+                                            <td class="money">
+                                                @if (@line.Discount.HasValue && @line.Discount > 0)
+                                                {
+                                                    <span style="text-decoration: line-through">
+                                                        @line.Price
+                                                    </span> @line.PriceWithDiscount }
+                                                else
+                                                { @line.Price}
+                                            </td>
+                                            <td class="money">
+                                                @line.Tax
+                                            </td>
+                                            <td>
+                                                @Html.TextBoxFor(model => model.OrderLines[i].Quantity, new { @class = "qty form-control no-padding" })
+                                            </td>
+                                            <td>
+                                                @line.Total
+                                            </td>
 
-                                    </tr>
-                            }
+                                        </tr>
+                                    }
                                 </tbody>
                                 <tfoot>
                                     <tr>
-                                        
+
                                         <td>Sub total:</td>
                                         <td class="money order-subtotal">
                                             @Model.SubTotal
@@ -73,26 +84,26 @@ else
 
                                     </tr>
                                     <tr>
-                                       
+
                                         <td>VAT:</td>
                                         <td class="money order-tax">
                                             @Model.TaxTotal
                                         </td>
-                                       
+
                                     </tr>
                                     <tr>
                                         <td>Discounts:</td>
                                         <td class="money order-discounts">
                                             @Model.DiscountTotal
                                         </td>
-                                       
+
                                     </tr>
                                     <tr>
                                         <td>Order total:</td>
                                         <td class="money order-total">
                                             @Model.OrderTotal
                                         </td>
-                                       
+
                                     </tr>
                                 </tfoot>
                             </table>
@@ -111,10 +122,10 @@ else
                     </div>
                 </div>
             </div>
-            </form>
+        </form>
     </div>
     <!-- ***** Cart Area End ***** -->
-  
+
     <div class="col-md-6" id="voucher-form">
         @Umbraco.RenderMacro("uCommerceVoucher")
         <p><span class="label label-info">Tip!</span> <small>Sign up to our mailing list and get 10% off your first order! <a href="#">Click here to get 10% off now</a>!</small></p>
