@@ -12,7 +12,10 @@ namespace UmbUcommerce.Controllers
 {
     public class CurrencyController : SurfaceController
     {
-        // GET: Currency
+        /// <summary>
+        /// Load currency dropdown partial view
+        /// </summary>
+        /// <returns>Partial view</returns>
         public ActionResult GetCurrency()
         {
             var priceGroupRepository = ObjectFactory.Instance.Resolve<IRepository<PriceGroup>>();
@@ -37,7 +40,11 @@ namespace UmbUcommerce.Controllers
             return View("/Views/PartialView/_CurrencyList.cshtml", model);
         }
 
-        //
+        /// <summary>
+        /// Change currency on dropdown change
+        /// </summary>
+        /// <param name="PriceGroupId"></param>
+        /// <returns>success message</returns>
         [HttpPost]
         public ActionResult ChangeCurrency(int PriceGroupId)
         {
