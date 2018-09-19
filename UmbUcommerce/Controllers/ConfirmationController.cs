@@ -2,6 +2,7 @@
 using System.Web.Mvc;
 using Umbraco.Web.Models;
 using Umbraco.Web.Mvc;
+using UmbUcommerce.Models;
 
 namespace UmbUcommerce.Controllers
 {
@@ -10,7 +11,8 @@ namespace UmbUcommerce.Controllers
         // GET: Confirmation
         public override ActionResult Index(RenderModel model)
         {
-          return View("/Views/Confirmation.cshtml");
+            ConfirmationPageViewModel confirmationPageViewModel = new ConfirmationPageViewModel();
+          return View("/Views/Confirmation.cshtml", confirmationPageViewModel);
         }
     }
 }

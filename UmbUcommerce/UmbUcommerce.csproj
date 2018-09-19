@@ -298,6 +298,7 @@
     <Content Include="App_Plugins\ModelsBuilder\modelsbuilder.resource.js" />
     <Content Include="Assets\cart.html" />
     <Content Include="Assets\checkout-2.html" />
+    <Content Include="Assets\checkout-3.html" />
     <Content Include="Assets\css\animate.css" />
     <Content Include="Assets\css\bootstrap.min.css" />
     <Content Include="Assets\css\core-style.css" />
@@ -2776,7 +2777,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\BasketController.cs" />
-    <Compile Include="Controllers\BasketPreviewController.cs" />
+    <Compile Include="Controllers\PreviewItemsController.cs" />
     <Compile Include="Controllers\BillingController.cs" />
     <Compile Include="Controllers\BreadcrumbsController.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
@@ -2802,6 +2803,7 @@
     <Compile Include="Models\BreadcrumbsViewModel.cs" />
     <Compile Include="Models\CategoryNavigationViewModel.cs" />
     <Compile Include="Models\CategoryViewModel.cs" />
+    <Compile Include="Models\ConfirmationPageViewModel.cs" />
     <Compile Include="Models\FacetsDisplayedViewModel.cs" />
     <Compile Include="Models\FacetValueViewModel.cs" />
     <Compile Include="Models\FacetViewModel.cs" />
@@ -2879,7 +2881,6 @@
     <Content Include="Views\PartialView\ProductReview.cshtml" />
     <Content Include="Views\PartialView\Voucher.cshtml" />
     <Content Include="Views\Payment.cshtml" />
-    <Content Include="Views\Preview.cshtml" />
     <Content Include="Views\Product.cshtml" />
     <Content Include="Views\Search.cshtml" />
     <Content Include="Views\Shipping.cshtml" />
@@ -3245,6 +3246,7 @@
     <Content Include="Views\Partials\_CategoryOfferArea.cshtml" />
     <Content Include="Views\Partials\_HomeProductTabs.cshtml" />
     <Content Include="Views\PartialView\_HomePageTabProducts.cshtml" />
+    <Content Include="Views\Preview.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

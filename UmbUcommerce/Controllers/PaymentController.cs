@@ -69,8 +69,8 @@ namespace UmbUcommerce.Controllers
 
 			TransactionLibrary.ExecuteBasketPipeline();
 
-            var root = UmbracoContext.PublishedContentRequest.PublishedContent.AncestorsOrSelf("home").FirstOrDefault();
-            var preview = root.Descendants("basketPreview").FirstOrDefault();
+            var root = UmbracoContext.PublishedContentRequest.PublishedContent.AncestorsOrSelf("homePage").FirstOrDefault();
+            var preview = root.Descendants("previewItems").FirstOrDefault();
             return Redirect(preview.Url);
         }
 

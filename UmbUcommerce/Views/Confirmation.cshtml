@@ -1,10 +1,49 @@
-﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage
+﻿@inherits Umbraco.Web.Mvc.UmbracoViewPage<UmbUcommerce.Models.ConfirmationPageViewModel>
 @{
     Layout = "Layout.cshtml";
 }
 
-<div class="alert alert-info">
-    <h1>Thank you for your order</h1>
-    <br />
-    <p>An order confirmation email has been sent to your email address</p>
+
+
+<!-- ***** Breadcumb Area Start ***** -->
+<div class="breadcumb_area bg-img background-overlay-white" style="height: 100px;">
+    <div class="container h-100">
+        <div class="row h-100 align-items-center">
+            <div class="col-12">
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item"><a href="index-2.html">Home</a></li>
+                    <li class="breadcrumb-item active">Checkout</li>
+                </ol>
+            </div>
+        </div>
+    </div>
 </div>
+<!-- ***** Breadcumb Area End ***** -->
+
+<div class="checkout_steps_area">
+    <a class="" href="#"><i class="ti-check"></i> Billing</a>
+    <a class="" href="#"><i class="ti-check"></i> Shipping</a>
+    <a class="" href="#"><i class="ti-check"></i> Payment</a>
+    <a class="" href="#"><i class="ti-check"></i> Review</a>
+    <a class="active" href="#"><i class="ti-check"></i> Confirmation</a>
+</div>
+
+<!-- ***** Cart Area Start ***** -->
+<div class="checkout_area section_padding_0_70">
+    <form method="post">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="cart-table clearfix section_padding_50">
+                        <div class="alert alert-info ">
+                            <h1>Thank you for your order</h1>
+                            <br />
+                            <p>An order confirmation email has been sent to your email address</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>
+<!-- ***** Cart Area End ***** -->

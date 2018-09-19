@@ -8,7 +8,7 @@ using  Umbraco.Web;
 using  Umbraco.ModelsBuilder;
 using  Umbraco.ModelsBuilder.Umbraco;
 [assembly: PureLiveAssembly]
-[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "e0d428785bd4f546")]
+[assembly:ModelsBuilderAssembly(PureLive = true, SourceHash = "21fcd3fe2865f1c2")]
 [assembly:System.Reflection.AssemblyVersion("0.0.0.1")]
 
 
@@ -407,16 +407,16 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 	}
 
-	/// <summary>Preview</summary>
-	[PublishedContentModel("preview")]
-	public partial class Preview : Basket
+	/// <summary>PreviewItems</summary>
+	[PublishedContentModel("previewItems")]
+	public partial class PreviewItems : Basket
 	{
 #pragma warning disable 0109 // new is redundant
-		public new const string ModelTypeAlias = "preview";
+		public new const string ModelTypeAlias = "previewItems";
 		public new const PublishedItemType ModelItemType = PublishedItemType.Content;
 #pragma warning restore 0109
 
-		public Preview(IPublishedContent content)
+		public PreviewItems(IPublishedContent content)
 			: base(content)
 		{ }
 
@@ -427,7 +427,7 @@ namespace Umbraco.Web.PublishedContentModels
 		}
 #pragma warning restore 0109
 
-		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<Preview, TValue>> selector)
+		public static PublishedPropertyType GetModelPropertyType<TValue>(Expression<Func<PreviewItems, TValue>> selector)
 		{
 			return PublishedContentModelUtility.GetModelPropertyType(GetModelContentType(), selector);
 		}

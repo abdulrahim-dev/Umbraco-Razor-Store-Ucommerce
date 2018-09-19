@@ -52,7 +52,7 @@ namespace UmbUcommerce.Controllers
 			TransactionLibrary.CreateShipment(shipping.SelectedShippingMethodId, overwriteExisting: true);
 			TransactionLibrary.ExecuteBasketPipeline();
 
-            var root = UmbracoContext.PublishedContentRequest.PublishedContent.AncestorsOrSelf("home").FirstOrDefault();
+            var root = UmbracoContext.PublishedContentRequest.PublishedContent.AncestorsOrSelf("homePage").FirstOrDefault();
             var payment = root.Descendants("payment").FirstOrDefault();
             return Redirect(payment.Url);
         }
